@@ -1,0 +1,70 @@
+server:
+  servlet:
+    context-path: /
+  port: 9080
+  compression:
+    mime-types:
+      - application/json
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5439/sampledb
+    username: sampledb
+    password: sampledb
+    continue-on-error: true
+
+  application:
+    name: authentication-ms
+  jpa:
+    open-in-view: false
+    show-sql: true
+    format-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+          lob:
+            non_contextual_creation: true
+    
+application:
+  async:
+    corePoolSize: 20
+    maxPoolSize: 40
+    queueCapacity: 60
+
+  locale:
+    country: BR
+    language: pt
+
+info:
+  app:
+    name: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude:
+          - scheduledtasks
+          - heapdump
+          - mappings
+          - env
+          - flyway
+          - configprops
+          - shutdown
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org:
+      apache: WARN
+    root: info

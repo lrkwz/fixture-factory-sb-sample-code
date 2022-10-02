@@ -1,0 +1,12 @@
+version: "3"
+services:
+  fix-sample-db:
+    image: postgres:10.20
+    volumes:
+      - ./temp:/var/lib/postgresql/data1
+    environment:
+      POSTGRES_PASSWORD: sampledb
+      POSTGRES_USER: sampledb
+      POSTGRES_DB: sampledb
+    ports:
+      - "5439:5432"
