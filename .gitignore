@@ -1,2 +1,5 @@
 # Project exclude paths
 /target/
+
+#intellij config files
+*.idea
