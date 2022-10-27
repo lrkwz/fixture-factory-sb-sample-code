@@ -8,7 +8,7 @@ There is  documentation about Fixture Factory on
 it's the GitHub page.
 The project's goal is to make available an example of a SpringBoot scenario with the fixture factory test code.
 If you want to know more about the Fixture Factory framework, the documentation about the Fixture Factory and how to implement and use the templates can be found
-here: [GitHub - FixtureFactory](https://github.com/six2six/fixture-factory)
+**here:** [GitHub - FixtureFactory](https://github.com/six2six/fixture-factory)
 
 ## Scenario Description
 
@@ -255,3 +255,4 @@ Now we can create our test scenario to evaluate the query on the database.
                 .allMatch(statusNumberResponse -> statusNumberResponse.getCount().equals(1L));;
     }
 ```
+
