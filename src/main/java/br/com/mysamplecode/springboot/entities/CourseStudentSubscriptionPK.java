@@ -1,16 +1,19 @@
 package br.com.mysamplecode.springboot.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import java.io.Serializable;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class CourseStudentSubscriptionPK implements Serializable {
     @Column(name = "id_student")
-    private final String studentId;
+    private String studentId;
     @Column(name = "id_course")
-    private final String courseId;
+    private String courseId;
+
 }
