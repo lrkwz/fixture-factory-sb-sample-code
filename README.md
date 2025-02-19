@@ -33,7 +33,7 @@ financial school departament allows it.**
 
 
 ## Let's start the solution
-Our project is using the 2.6 Spring Boot version with Maven. You can find the build properties and
+Our project is using the 3.4 Spring Boot version with Maven. You can find the build properties and
 project dependencies on the pom.xml file. You can also find other project properties on the application.yml file.
 
  ### Adding the Fixture Factory Dependency
