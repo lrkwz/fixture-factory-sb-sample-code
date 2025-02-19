@@ -24,46 +24,46 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(org.springframework.test.context.junit.jupiter.SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-        , classes = SampleApplication.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+	classes = SampleApplication.class)
 @AutoConfigureMockMvc
 @Import(EntityManagerProcessor.class)
- class GetStudentsNumberStatusFromCourseServiceIntegratedTest {
+class GetStudentsNumberStatusFromCourseServiceIntegratedTest {
 
-    private static final String GET_SUBSCRIPTION_COUNT = "/sample/subscriptions/count/{course-id}";
-    private static final String COURSE_ID= "f32d21d8-0a00-11ed-861d-0242ac120002";
+	private static final String GET_SUBSCRIPTION_COUNT = "/sample/subscriptions/count/{course-id}";
+	private static final String COURSE_ID = "f32d21d8-0a00-11ed-861d-0242ac120002";
 
-    @Autowired
-    private SampleController sampleController;
+	@Autowired
+	private SampleController sampleController;
 
-    @Autowired
-    private EntityManagerProcessor entityManagerProcessor;
+	@Autowired
+	private EntityManagerProcessor entityManagerProcessor;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+	@Autowired
+	private ObjectMapper objectMapper;
 
 
-    @Autowired
-    private MockMvc mockMvc;
+	@Autowired
+	private MockMvc mockMvc;
 
-    @BeforeEach
-    public void setup(){
-        FixtureFactoryLoader.loadTemplates("br.com.mysamples.templates");
-        Fixture.from(CourseStudentSubscription.class).uses(entityManagerProcessor).gimme(CourseStudentSubscriptionTemplate.VALID_COURSE_SUBSCRIPTION);
-    }
+	@BeforeEach
+	public void setup() {
+		FixtureFactoryLoader.loadTemplates("br.com.mysamples.templates");
+		Fixture.from(CourseStudentSubscription.class).uses(entityManagerProcessor).gimme(CourseStudentSubscriptionTemplate.VALID_COURSE_SUBSCRIPTION);
+	}
 
-    @Test
-    void shouldAssertTrue() throws Exception {
+	@Test
+	void shouldAssertTrue() throws Exception {
 
-        String result = mockMvc.perform(get(GET_SUBSCRIPTION_COUNT,COURSE_ID)
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk())
-                        .andReturn()
-                                .getResponse()
-                                        .getContentAsString();
-        StatusNumberResponse[] statusNumberResponseList = objectMapper.readValue(result, StatusNumberResponse[].class);
-        Assertions.assertThat(statusNumberResponseList).hasSize(1)
-                .allMatch(statusNumberResponse -> statusNumberResponse.getCount().equals(1L));;
-    }
+		String result = mockMvc.perform(get(GET_SUBSCRIPTION_COUNT, COURSE_ID)
+				.contentType(MediaType.APPLICATION_JSON)
+			).andExpect(status().isOk())
+			.andReturn()
+			.getResponse()
+			.getContentAsString();
+		StatusNumberResponse[] statusNumberResponseList = objectMapper.readValue(result, StatusNumberResponse[].class);
+		Assertions.assertThat(statusNumberResponseList).hasSize(1)
+			.allMatch(statusNumberResponse -> statusNumberResponse.getCount().equals(1L));
+	}
 
 }
